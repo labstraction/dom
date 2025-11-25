@@ -37,3 +37,24 @@ console.log(divOne.textContent);
 console.log(divOne.innerHTML);
 console.log(divOne.outerHTML);
 console.log(divOne.children);
+
+///// SCRIVERE IL CONTENUTO
+
+//appendChild
+const newP = document.createElement('p');
+divOne.appendChild(newP);
+
+////createTextNode
+const node = document.createTextNode('quarto');
+newP.appendChild(node);
+
+
+//innerHTML
+newP.innerHTML = 'quarto paragrafo'
+newP.innerHTML = '<strong>quarto paragrafo</strong>'
+
+
+//esempio
+
+const student1 = {name: 'alexander', surname:'macias', age: 26, gender:'male'};
+const student2 = {name: 'evelyn', surname:'medina', age: undefined, gender:'female'};
