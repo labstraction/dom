@@ -12,3 +12,43 @@
 .green-background{
     background-color: greenyellow;
 }
+
+.makeup-card{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 20px;
+    box-shadow:0px 5px 5px 5px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+#makeup-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.switch{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: none;
+    background-color: darkslategray;
+    box-shadow:3px 3px 5px 3px rgba(0,0,0,0.2);
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    color: white;
+}
+
+.on{
+    background-color: chartreuse;
+    color: black;
+    box-shadow: inset 2px 2px 4px 1px rgba(0,0,0,0.2);
+}
+
+.bad{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
