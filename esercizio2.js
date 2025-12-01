@@ -42,7 +42,7 @@ const nintendoGames = [
         developer: "MercurySteam, Nintendo EPD",
         isMultiplayer: false,
         rating: 88,
-        priceUSD: 59.99,
+        priceUSD: 9.99,
         isExclusive: true
     },
     {
@@ -53,7 +53,7 @@ const nintendoGames = [
         developer: "Nintendo EPD",
         isMultiplayer: true,
         rating: 83,
-        priceUSD: 59.99,
+        priceUSD: 29.99,
         isExclusive: true
     },
     {
@@ -75,7 +75,7 @@ const nintendoGames = [
         developer: "Bandai Namco Studios, Sora Ltd.",
         isMultiplayer: true,
         rating: 93,
-        priceUSD: 59.99,
+        priceUSD: 19.99,
         isExclusive: true
     },
     {
@@ -86,7 +86,7 @@ const nintendoGames = [
         developer: "Nintendo EAD",
         isMultiplayer: true,
         rating: 92,
-        priceUSD: 59.99,
+        priceUSD: 61.99,
         isExclusive: true
     },
     {
@@ -97,7 +97,7 @@ const nintendoGames = [
         developer: "Intelligent Systems, Koei Tecmo",
         isMultiplayer: false,
         rating: 89,
-        priceUSD: 59.99,
+        priceUSD: 99.99,
         isExclusive: true
     },
     {
@@ -108,7 +108,7 @@ const nintendoGames = [
         developer: "Next Level Games",
         isMultiplayer: true,
         rating: 86,
-        priceUSD: 59.99,
+        priceUSD: 58.99,
         isExclusive: true
     },
     {
@@ -119,7 +119,7 @@ const nintendoGames = [
         developer: "Retro Studios",
         isMultiplayer: true,
         rating: 87,
-        priceUSD: 59.99,
+        priceUSD: 35.99,
         isExclusive: true
     },
     {
@@ -130,7 +130,7 @@ const nintendoGames = [
         developer: "Monolith Soft",
         isMultiplayer: false,
         rating: 89,
-        priceUSD: 59.99,
+        priceUSD: 39.99,
         isExclusive: true
     },
     {
@@ -141,7 +141,7 @@ const nintendoGames = [
         developer: "HAL Laboratory",
         isMultiplayer: true,
         rating: 85,
-        priceUSD: 59.99,
+        priceUSD: 55.99,
         isExclusive: true
     },
     {
@@ -152,7 +152,7 @@ const nintendoGames = [
         developer: "PlatinumGames",
         isMultiplayer: false,
         rating: 87,
-        priceUSD: 59.99,
+        priceUSD: 49.99,
         isExclusive: true
     }
 ]
@@ -166,10 +166,45 @@ function renderGameList(games) {
     for (const game of games) {
 
         const gameCard = document.createElement('div');
+        gameCard.classList.add('game-card')
 
         const titleSpan = document.createElement('span');
-        titleSpan.appendChild(document.createTextNode('nome: ' + game.title));
+        titleSpan.classList.add('card-title');
+        titleSpan.appendChild(document.createTextNode(game.title));
         gameCard.appendChild(titleSpan);
+
+        const platformSpan = document.createElement('span');
+        platformSpan.appendChild(document.createTextNode('piattaforma: ' + game.platform.join(', ')));
+        gameCard.appendChild(platformSpan);
+
+        const genreSpan = document.createElement('span');
+        genreSpan.appendChild(document.createTextNode('genere: ' + game.genre.join(', ')));
+        gameCard.appendChild(genreSpan);
+
+        const yearSpan = document.createElement('span');
+        yearSpan.appendChild(document.createTextNode('anno: ' + game.releaseYear));
+        gameCard.appendChild(yearSpan);
+
+        const developerSpan = document.createElement('span');
+        developerSpan.appendChild(document.createTextNode('sviluppatore: ' + game.developer));
+        gameCard.appendChild(developerSpan);
+
+        if (game.isMultiplayer) {
+            const multiSpan = document.createElement('span');
+            multiSpan.appendChild(document.createTextNode('multiplayer'));
+            gameCard.appendChild(multiSpan);
+        }
+
+        const ratingSpan = document.createElement('span');
+        ratingSpan.appendChild(document.createTextNode('votazione: ' + game.rating));
+        gameCard.appendChild(ratingSpan);
+
+        if (game.isExclusive) {
+            const exclusiveSpan = document.createElement('span');
+            exclusiveSpan.appendChild(document.createTextNode('esclusivo'));
+            gameCard.appendChild(exclusiveSpan);
+        }
+
 
         const priceSpan = document.createElement('span');
         priceSpan.appendChild(document.createTextNode('price: $' + game.priceUSD));
@@ -199,6 +234,38 @@ function orderGamesByTitle(){
 }
 
 orderTitleBtn.addEventListener('click', orderGamesByTitle);
+
+const orderPriceBtn = document.getElementById('price-order');
+
+function comparePrices(g1, g2){
+    return g1.priceUSD - g2.priceUSD;
+}
+
+function orderGamesByPrice(){
+
+    nintendoGames.sort(comparePrices);
+
+    renderGameList(nintendoGames);
+
+}
+
+orderPriceBtn.addEventListener('click', orderGamesByPrice);
+
+const orderRatingBtn = document.getElementById('rating-order');
+
+function compareRatings(g1, g2){
+    return g2.rating - g1.rating;
+}
+
+function orderGamesByRating(){
+
+    nintendoGames.sort(compareRatings);
+
+    renderGameList(nintendoGames);
+
+}
+
+orderRatingBtn.addEventListener('click', orderGamesByRating);
 
 
 
